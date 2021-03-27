@@ -17,5 +17,8 @@ buildNumber.properties
 .idea/
 *.iml
 
+# DotEnv
 .env
 
+# Korekto
+slugs.txt
