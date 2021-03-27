@@ -42,14 +42,14 @@ public class Part5Grader implements PartGrader {
                 "org.springframework.boot:spring-boot-maven-plugin:2.4.4:run -Dspring-boot.run.jvmArguments='-Dserver.port=8085 -DtackEnabled=true'");
              AgifyServer agifyServer = AgifyServer.createStarted()) {
 
-            agifyServer.addUser("albert", 23, "FR");
-            agifyServer.addUser("ginette", 22, "FR");
+            UserInfo user1 = new UserInfo(agifyServer.addUser("albert", 23, "FR"), "M", "F");
+            UserInfo user2 = new UserInfo(agifyServer.addUser("ginette", 22, "FR"), "F", "M");
 
             for (int i = 0; i < 10; i++) {
-                client.submitInscription(new UserInfo("albert@titi.com", "Albert", "albert", "FR", "M", "F")).execute();
-                client.submitInscription(new UserInfo("ginette@titi.com", "Ginette", "ginette", "FR", "F", "M")).execute();
-                client.getMatches("Ginette", "FR").execute();
-                client.getMatches("Kiwi", "FR").execute();
+                client.submitInscription(user1).execute();
+                client.submitInscription(user2).execute();
+                client.getMatches(user1.userName, user1.userCountry).execute();
+                client.getMatches(user2.userName, user2.userCountry).execute();
             }
 
             int callsNumber = agifyServer.getCallsNumber();

@@ -2,18 +2,17 @@ package com.github.lernejo.korekto.grader.api;
 
 import com.github.lernejo.korekto.grader.api.parts.*;
 import com.github.lernejo.korekto.toolkit.*;
-import com.github.lernejo.korekto.toolkit.misc.Equalator;
 import com.github.lernejo.korekto.toolkit.thirdparty.git.GitContext;
 import com.github.lernejo.korekto.toolkit.thirdparty.git.GitNature;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public class Grader implements GradingStep {
-    private final Equalator equalator = new Equalator(1);
+public class ApiGrader implements Grader {
 
     private final Retrofit retrofit = new Retrofit.Builder()
         .baseUrl("http://localhost:8085/")
@@ -45,5 +44,15 @@ public class Grader implements GradingStep {
             new Part6Grader().grade(git, exercise),
             new Part7Grader().grade(git, exercise)
         );
+    }
+
+    @Override
+    public Instant deadline(GradingContext context) {
+        return Instant.parse("2021-03-31T23:59:00.00Z");
+    }
+
+    @Override
+    public String slugToRepoUrl(String slug) {
+        return "https://github.com/" + slug + "/api_training";
     }
 }
