@@ -73,7 +73,10 @@ class AgifyServer implements AutoCloseable {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             String rawQuery = exchange.getRequestURI().getQuery();
-            Map<String, String> query = Arrays.stream(rawQuery.split("&")).map(q -> q.split("=")).collect(Collectors.toMap(e -> e[0].toLowerCase(), e -> e[1]));
+            Map<String, String> query = Arrays.stream(rawQuery.split("&"))
+                .filter(q -> !q.isBlank())
+                .map(q -> q.split("="))
+                .collect(Collectors.toMap(e -> e[0].toLowerCase(), e -> e[1]));
 
             String name = query.get("name");
             if (name == null) {
