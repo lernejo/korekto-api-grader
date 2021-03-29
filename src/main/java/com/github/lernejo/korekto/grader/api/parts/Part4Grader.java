@@ -96,7 +96,7 @@ public class Part4Grader implements PartGrader {
                 }
             } else {
                 if (!user2Matches.body().equals(List.of(user1.asMatch()))) {
-                    return result(List.of("Logic not correctly implemented, " + user2 + " should have " + user1 + " as a match"), maxGrade() / 2);
+                    return result(List.of("Logic not correctly implemented, " + user2 + " should only have " + user1 + " as a match, but found: " + user2Matches.body()), maxGrade() / 2);
                 } else if (!user3Matches.body().isEmpty()) {
                     return result(List.of("Logic not correctly implemented, " + user3 + " should have no match but found: " + user3Matches.body()), maxGrade() / 2);
                 } else {
