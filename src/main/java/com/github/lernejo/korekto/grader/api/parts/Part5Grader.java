@@ -3,12 +3,14 @@ package com.github.lernejo.korekto.grader.api.parts;
 import com.github.lernejo.korekto.toolkit.Exercise;
 import com.github.lernejo.korekto.toolkit.GradePart;
 import com.github.lernejo.korekto.toolkit.GradingConfiguration;
+import com.github.lernejo.korekto.toolkit.misc.Ports;
 import com.github.lernejo.korekto.toolkit.thirdparty.git.GitContext;
 import com.github.lernejo.korekto.toolkit.thirdparty.maven.MavenExecutionHandle;
 import com.github.lernejo.korekto.toolkit.thirdparty.maven.MavenExecutor;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Part5Grader implements PartGrader {
 
@@ -44,6 +46,9 @@ public class Part5Grader implements PartGrader {
 
             UserInfo user1 = new UserInfo(agifyServer.addUser("albert", 23, "FR"), "M", "F");
             UserInfo user2 = new UserInfo(agifyServer.addUser("ginette", 22, "FR"), "F", "M");
+
+            Ports.waitForPortToBeListenedTo(8085, TimeUnit.SECONDS, 20L);
+            Ports.waitForPortToBeListenedTo(9876, TimeUnit.SECONDS, 5L);
 
             for (int i = 0; i < 10; i++) {
                 client.submitInscription(user1).execute();
