@@ -19,7 +19,7 @@ public class ApiGrader implements Grader {
         .addConverterFactory(GsonConverterFactory.create())
         .build();
 
-    private final MeetMockApiClient client = retrofit.create(MeetMockApiClient.class);
+    public final MeetMockApiClient client = retrofit.create(MeetMockApiClient.class);
 
     @Override
     public void run(GradingConfiguration gradingConfiguration, GradingContext context) {
@@ -48,7 +48,7 @@ public class ApiGrader implements Grader {
 
     @Override
     public Instant deadline(GradingContext context) {
-        return Instant.parse("2021-03-31T23:59:00.00Z");
+        return Instant.parse("2021-04-06T23:59:00.00Z");
     }
 
     @Override
