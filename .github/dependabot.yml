@@ -1,0 +1,11 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.github.lernejo:korekto-toolkit
+    versions:
+    - 0.0.5
