@@ -19,7 +19,7 @@
 
         <korekto-toolkit.version>1.1.0</korekto-toolkit.version>
         <http-tack.version>0.0.1</http-tack.version>
-        <logback-classic.version>1.2.3</logback-classic.version>
+        <logback-classic.version>1.2.5</logback-classic.version>
         <retrofit.version>2.9.0</retrofit.version>
 
         <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
